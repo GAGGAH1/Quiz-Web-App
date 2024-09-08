@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>QUIZ HOMEPAGE</title>
+</head>
+
+<body>
+    
+    <nav class="bg-blue-500 w-full relative z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4 flex-wrap">
+                <!-- "Back" button section -->
+                <a href="index.html">
+                    <button class="text-white">Back</button>
+                </a>
+    
+                <!-- User info section -->
+                <div id="user-info" class="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0 md:space-x-16 mx-auto">
+                    <!-- populate automatically from localStorage -->
+                </div>
+    
+                <!-- Timer section -->
+                <div id="elapsed-time" class="float-right text-white mt-4 md:mt-0">
+                    Elapsed Time: <span id="timer">2:00</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Quiz Section -->
+
+    <div id="quiz-container" class="**hidden** mt-4">
+
+
+        <div id="question-container" class="mb-4">
+            <h3 id="question" class="font-semibold text-center"></h3>
+            <div id="answers" class="space-y-2">
+                <!-- Answer options will be dynamically injected -->
+            </div>
+        </div>
+        <button id="submit-btn" class="bg-green-500 text-white py-2 px-4 rounded">Submit</button>
+    </div>
+
+    <!-- Modal for displaying results -->
+    <div id="result-modal" class="hidden fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center">
+        <div class="bg-white p-6 rounded-lg shadow-lg max-w-md mx-auto">
+            <h2 class="text-xl text-center font-semibold mb-4">Quiz Result</h2>
+            <p id="result-message" class="mb-4 text-lg font-semibold">Your result will be displayed here.</p>
+            <button id="close-modal-btn"
+                class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Close</button>
+        </div>
+    </div>
+
+    <!-- Leaderboard Section -->
+    <div id="leaderboard-container" class="hidden w-full max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
+        <h2 class="text-lg font-semibold mb-4">Leaderboard</h2>
+        <div id="leaderboard-list" class="space-y-2">
+            <!-- Leaderboard results will be dynamically injected here -->
+        </div>
+    </div>
+
+
+
+    <script src="quiz.js"></script>
+    <script>
+        window.addEventListener("load", function () {
+            // Retrieve data from localStorage
+            const registeredData = JSON.parse(localStorage.getItem('registered'));
+
+            // Check if there is any registered data
+            if (registeredData) {
+                const { candidate, school } = registeredData;
+
+                // Select the element where you want to append the data
+                const userInfoDiv = document.getElementById("user-info");
+
+                // Append the candidate's name and school to the page
+                userInfoDiv.innerHTML = `
+            <p>Welcome, <strong>${candidate}</strong>!</p>
+            <p>School: <strong>${school}</strong></p>
+        `;
+            } else {
+                // No registered data found
+                const userInfoDiv = document.getElementById("user-info");
+                userInfoDiv.innerHTML = `<p>No registered user found.</p>`;
+            }
+        });
+
+    </script>
+</body>
+
+</html>

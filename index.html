@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>QUIZ REGISTRATION PAGE</title>
+</head>
+
+<body class="bg-gradient-to-r from-[#ff7e5f] to-[#feb47b]">
+
+    <div id="registration-deadline" class="mt-4">
+        <h2 class="text-white text-lg font-semibold flex items-center justify-center">Registration Deadline: <span
+                id="deadline-date"></span></h2>
+    </div>
+
+    <div id="late-fee-message" class="hidden text-white ">
+        <p class="text-white text-sm font-semibold flex items-center justify-center">The registration deadline has
+            passed. You must pay a fine of N5,000 to register.</p>
+    </div>
+    <!-- School Registration Section -->
+    <div id="registration-form" class="w-full max-w-md mx-auto bg-white p-8 rounded-lg shadow-md mt-36">
+        <h2 class="text-lg font-semibold mb-4">School Registration</h2>
+        <form id="signup-form">
+            <input id="school-name" type="text" placeholder="Enter School Name"
+                class="mb-4 w-full p-2 border border-gray-300 rounded">
+            <input id="candidate-name" type="text" placeholder="Enter Candidate Name"
+                class="mb-4 w-full p-2 border border-gray-300 rounded">
+            <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Register</button>
+        </form>
+        <div id="fine-message" class="text-red-500 mt-4 hidden">Late registration! Please pay N5000 fine.</div>
+    </div>
+
+
+    <script src="index.js"></script>
+    <script>
+        // Set the registration deadline date (adjust the date accordingly)
+        const registrationDeadline = new Date('2024-09-10');
+
+        // Function to format the date for display
+        function formatDate(date) {
+            const day = String(date.getDate()).padStart(2, '0');
+            const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+            const year = date.getFullYear();
+            return `${year}-${month}-${day}`;
+        }
+
+        // Display the deadline date
+        document.getElementById('deadline-date').textContent = formatDate(registrationDeadline);
+
+        // Check if today is past the registration deadline
+        const today = new Date();
+        let isLateRegistration = false;
+
+        if (today > registrationDeadline) {
+            // If today is past the deadline, show the late fee message
+            document.getElementById('late-fee-message').style.display = 'block';
+            isLateRegistration = true;
+        }
+
+        if (isLateRegistration) {
+            // Redirect to payment page or initiate payment process
+            alert("Please complete the N5,000 payment to finalize registration.");
+            window.location.href = "payment.html"
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.1/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-500">
+    <div class="text-left">
+        <a href="index.html"><button type="submit" class="bg-red-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600">BACK</button></a>
+    </div>
+    <div class="container mx-auto py-12">
+        
+        <h1 class="text-center text-2xl font-bold text-white mb-6">Complete Your Payment</h1>
+        
+        <div class="max-w-lg mx-auto bg-white shadow-lg rounded-lg p-8">
+            <form id="payment-form">
+                <div class="mb-4">
+                    <label for="school-name" class="block text-gray-600 font-semibold">Full Name of School</label>
+                    <input type="text" id="school-name" name="school-name" class="w-full p-3 border border-gray-300 rounded" placeholder="Enter school name here" required>
+                </div>
+
+                <div class="mb-4">
+                    <label for="email" class="block text-gray-600 font-semibold">Email Address</label>
+                    <input type="email" id="email" name="email" class="w-full p-3 border border-gray-300 rounded" placeholder="UniBen@example.com" required>
+                </div>
+
+                <div class="mb-4">
+                    <label for="card-number" class="block text-gray-600 font-semibold">Card Number</label>
+                    <input type="text" id="card-number" name="card-number" class="w-full p-3 border border-gray-300 rounded" placeholder="1000000000" required>
+                </div>
+
+                <div class="flex justify-between mb-4">
+                    <div class="w-1/2 pr-2">
+                        <label for="expiry-date" class="block text-gray-600 font-semibold">Expiry Date</label>
+                        <input type="text" id="expiry-date" name="expiry-date" class="w-full p-3 border border-gray-300 rounded" placeholder="MM/YY" required>
+                    </div>
+                    <div class="w-1/2 pl-2">
+                        <label for="cvv" class="block text-gray-600 font-semibold">CVV</label>
+                        <input type="text" id="cvv" name="cvv" class="w-full p-3 border border-gray-300 rounded" placeholder="123" required>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <label for="amount" class="block text-gray-600 font-semibold">Amount to Pay</label>
+                    <input type="text" id="amount" name="amount" class="w-full p-3 border border-gray-300 rounded" value="5000" readonly>
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="bg-blue-500 text-white font-bold py-3 px-6 rounded hover:bg-blue-600">Pay Now</button>
+                </div>
+            </form>
+
+            <div id="payment-status" class="mt-6 text-center"></div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("payment-form").addEventListener("submit", function(e) {
+            e.preventDefault();
+            // Simulate payment process
+            document.getElementById("payment-status").innerHTML = '<p class="text-green-500 font-bold">Processing payment... Please wait.</p>';
+
+            setTimeout(function() {
+                document.getElementById("payment-status").innerHTML = '<p class="text-green-500 font-bold">Payment successful! Registration is complete.</p>';
+                
+                // Redirect after successful payment simulation
+                setTimeout(function() {
+                    window.location.href = "success.html";  
+                }, 2000);
+            }, 10000);  
+        });
+    </script>
+</body>
+</html>
